@@ -8,27 +8,29 @@ int main(){
     int cnt=0;
     int idx=-1;
     char x[1000100];
-    string a="";
-    string b="";
+    char res[1000100];
     scanf("%s\n",x);
-    for (int i = 0; i <= 1000100; i++) {
-        if (x[i]=='\0')
-        {
-            break;
-        }
-        else{
+    string xa = x;
+    int lef = 0;
+    int right = xa.length();
+    res[right]='\0';
+    right--;
+    for (int i = 0; i < xa.length(); i++) {
+        
             arr[x[i]-'A']+=1;
             if (arr[x[i]-'A']%2!=0)
             {
                 cnt++;
             }
             else{
-                a+=x[i];
-                b=x[i]+b;
+                res[lef]=x[i];
+                lef++;
+                res[right]=x[i];
+                right--;
                 cnt--;
                 arr[x[i]-'A']=0;
             }
-        }
+        
     }
 
     if (cnt>1)
@@ -36,7 +38,6 @@ int main(){
         printf("NO SOLUTION\n");
     }
     else{ 
-        string mid = "";
         if (cnt!=0)
         {
              for (int i = 0; i < 26; i++)
@@ -49,11 +50,11 @@ int main(){
             }
             for (int i = 0; i < arr[idx]; i++)
             {
-                mid+=('A'+idx);
+                res[lef]='A'+idx;
+                lef++;
             }
         }
-        a+=mid+b;
-        printf("%s\n",a.c_str());
+        printf("%s\n",res);
     }
     
 }
