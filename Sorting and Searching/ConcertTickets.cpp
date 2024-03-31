@@ -4,6 +4,7 @@
 #include<cstring>
 #include<stack>
 #include<queue>
+#include<set>
 using namespace std;
 #define f(i,s,e) for(long long int i=s;i<e;i++)
 #define cf(i,s,e) for(long long int i=s;i<=e;i++)
@@ -14,24 +15,23 @@ using namespace std;
 #define INF_LL 2e18
 int main(){
     int n,m;scanf("%d %d",&n,&m);
-    vector<int> arr;
+    multiset<int> arr;
     while (n--)
     {
         int a;scanf("%d",&a);
-        arr.push_back(a*-1);
+        arr.insert(a);
     }
-    sort(all(arr));
     while (m--)
     {
         int b;scanf("%d",&b);
-        vector<int>::iterator z = lower_bound(all(arr),b*-1);
-        if (z==arr.end())
+        auto z=arr.upper_bound(b);
+        if (z==arr.begin())
         {
             printf("-1\n");
         }
         else{
-            printf("%d\n",-1*arr[z-arr.begin()]);
-            arr[z-arr.begin()]=arr[z-arr.begin()+1];
+            printf("%d\n",*(--z));
+            arr.erase(z);
         }
         
     }
