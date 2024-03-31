@@ -77,10 +77,6 @@ int main()
             star[b[j]]=min(star[b[j]],weight[j]+star[a[j]]);
         }
         dfs();
-        // for (int i = 1; i <= x; i++)
-        // {
-        //     printf("%lld %lld %d\n",cpy[i],star[i],res[i]);
-        // }
         if (res[x])
         {
             printf("-1\n");
