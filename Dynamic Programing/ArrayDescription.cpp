@@ -69,9 +69,7 @@ int main(){
                     }
                 } 
             }
-            // printf("%d ",arr[i][j]);
         }
-        // printf("\n");
     }
     int res = 0;
     if (req[n]==0)
