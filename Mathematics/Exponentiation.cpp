@@ -15,7 +15,6 @@ using namespace std;
 #define ll long long
 #define INF_INT 2e9
 #define INF_LL 2e18
-#define MOD 1000000007
 int main(){
     
 }

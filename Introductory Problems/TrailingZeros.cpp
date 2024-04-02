@@ -1,13 +1,11 @@
 #include<cstdio>
 #include<algorithm>
+#include<cmath>
 #include<vector>
 #include<cstring>
 #include<stack>
 #include<queue>
 using namespace std;
-#define setB(a,i) (a |= (1 << i))
-#define unsetB(a,i) (a &= (~(1 << i)))
-#define queryB(a,i) (a & (1 << i))
 #define f(i,s,e) for(long long int i=s;i<e;i++)
 #define cf(i,s,e) for(long long int i=s;i<=e;i++)
 #define rf(i,e,s) for(long long int i=e-1;i>=s;i--)
@@ -15,7 +13,16 @@ using namespace std;
 #define ll long long
 #define INF_INT 2e9
 #define INF_LL 2e18
-#define MOD 1000000007
 int main(){
-    
+    int n;scanf("%d",&n);
+    int res = 0;
+    int cnt = 1;
+    while (n>=pow(5,cnt))
+    {
+        cnt++;
+    }
+    f(i,1,cnt){
+        res+=n/(pow(5,i));
+    }
+    printf("%d\n",res);
 }
