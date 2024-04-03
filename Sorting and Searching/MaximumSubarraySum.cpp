@@ -16,27 +16,14 @@ using namespace std;
 #define INF_INT 2e9
 #define INF_LL 2e18
 #define MOD 1000000007
-
-
-int modpow(int x,int n,int m){
-    if (n==0)
-    {
-        return 1%m;
-    }
-    ll u = modpow(x,n/2,m);
-    u = (u*u)%m;
-    if (n%2==1)
-    {
-        u=(u*x)%m;
-    }
-    return u;
-}
 int main(){
+    ll best=-1000000001; ll sum=0;
     int n;scanf("%d",&n);
-    while (n--)
-    {
-        int a,b;scanf("%d %d",&a,&b);
-        printf("%d\n",modpow(a,b,MOD));
+    f(i,0,n){
+        ll a;
+        scanf("%lld",&a);
+        sum = max(a,sum+a);
+        best = max(best,sum);
     }
-    
+    printf("%lld\n",best);
 }
