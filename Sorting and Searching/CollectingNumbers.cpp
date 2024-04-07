@@ -16,24 +16,21 @@ using namespace std;
 #define INF_INT 2e9
 #define INF_LL 2e18
 #define MOD 1000000007
-
-ll arr[1000001][2];
 int main(){
-    arr[1][0]=1;
-    arr[1][1]=1;
-    f(i,1,1000000){
-        arr[i][0]%=MOD;
-        arr[i][1]%=MOD;
-        arr[i+1][0]+=2*arr[i][0];
-        arr[i+1][0]+=arr[i][1];
-        arr[i+1][1]+=arr[i][0];
-        arr[i+1][1]+=4*arr[i][1];
-    }
+    int arr[200001];
     int n;scanf("%d",&n);
-    while (n--)
+    int cnt=1;
+    cf (i,1,n)
     {
         int a;scanf("%d",&a);
-        printf("%lld\n",(arr[a][0]%MOD+arr[a][1]%MOD)%MOD);
+        arr[a]=i;
     }
+    cf(i,2,n){
+        if (arr[i]<arr[i-1])
+        {
+            cnt++;
+        }
+    }
+    printf("%d\n",cnt);
     
 }
