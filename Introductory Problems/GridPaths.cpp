@@ -19,76 +19,79 @@ using namespace std;
 char arr[50];
 bool adj[9][9];
 int moves[4][2]={{0,1},{0,-1},{1,0},{-1,0}};
-bool valid(int i,int j){
+int rs = 0;
+bool valid(int i,int j,int n){
     if (i>=1&&i<=7&&j>=1&&j<=7)
     {
+        if (i==7&&j==1&&n!=48)
+        {
+            return false;
+        }
+        
         return true;
     }
     else{
         return false;
     }
 }
-int res(int n,int i,int j){
+void res(int n,int i,int j){
         // printf("%d %d\n",i,j);
     if (n==48)
     {
         if (i==7&&j==1)
         {
-            return 1;
+            rs++;
         }
-        return 0;
         
     }
     else{
-        int rs = 0;
         if (arr[n]=='L')
         {
-            if (valid(i,j-1)&&!adj[i][j-1])
+            if (valid(i,j-1,n+1)&&!adj[i][j-1])
             {
                 adj[i][j-1]=true;
-                rs+=res(n+1,i,j-1);
+                res(n+1,i,j-1);
                 adj[i][j-1]=false;
             }
         }
         else if (arr[n]=='R')
         {
-            if (valid(i,j+1)&&!adj[i][j+1])
+            if (valid(i,j+1,n+1)&&!adj[i][j+1])
             {
                 adj[i][j+1]=true;
-                rs+=res(n+1,i,j+1);
+                res(n+1,i,j+1);
                 adj[i][j+1]=false;
             }
         }
         else if (arr[n]=='U')
         {
-            if (valid(i-1,j)&&!adj[i-1][j])
+            if (valid(i-1,j,n+1)&&!adj[i-1][j])
             {
                 adj[i-1][j]=true;
-                rs+=res(n+1,i-1,j);
+                res(n+1,i-1,j);
                 adj[i-1][j]=false;
             }
         }
         else if (arr[n]=='D')
         {
-            if (valid(i+1,j)&&!adj[i+1][j])
+            if (valid(i+1,j,n+1)&&!adj[i+1][j])
             {
                 adj[i+1][j]=true;
-                rs+=res(n+1,i+1,j);
+                res(n+1,i+1,j);
                 adj[i+1][j]=false;
             }
         }
         else{
             f(x,0,4){
-                if (valid(i+moves[x][0],j+moves[x][1])&&!adj[i+moves[x][0]][j+moves[x][1]])
+                if (valid(i+moves[x][0],j+moves[x][1],n+1)&&!adj[i+moves[x][0]][j+moves[x][1]])
                 {
                    adj[i+moves[x][0]][j+moves[x][1]]=true;
-                    rs+=res(n+1,i+moves[x][0],j+moves[x][1]);
+                    res(n+1,i+moves[x][0],j+moves[x][1]);
                     adj[i+moves[x][0]][j+moves[x][1]]=false;
 
                 }
             }
         }
-        return rs;
     }
     
 }
@@ -100,5 +103,6 @@ int main(){
         }
     }
     adj[1][1]=true;
-    printf("%d\n",res(0,1,1));
+    res(0,1,1);
+    printf("%d\n",rs);
 }
