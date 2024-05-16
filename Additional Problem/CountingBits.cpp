@@ -25,5 +25,41 @@ using namespace std;
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    
+    ll arr[55];
+    arr[0]=0;
+    cf(i,1,50){
+        arr[i]=arr[i-1]*2+(1<<(i-1));
+    }
+    ll n;cin>>n;
+    int cc =1;
+    ll cnt =1;
+    while(cnt<<1<=n)
+    {
+        cnt<<=1; 
+        cc++;
+    }
+    if (n==(cnt<<1)-1)
+    {
+        cout << arr[cc]<<'\n';
+    }
+    else{
+        ll res = arr[cc-1];
+        n-=cnt-1;
+        while (n>1)
+        {
+            cc=1;
+            cnt=1;
+            while(cnt<<1<=n)
+            {
+                cnt<<=1; 
+                cc++;
+            }
+            cout<<cnt;
+            n-=cnt;
+            res+=arr[cc-1]+1*(cnt);
+        }
+        
+        
+        cout<<res<<"\n";     
+    }
 }

@@ -25,5 +25,31 @@ using namespace std;
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    
+    int n,m;cin>>n>>m;
+    vi arr;
+    arr.push_back(0);
+    cf(i,1,n){
+        int a;cin>>a;
+        arr.push_back(arr[i-1]+a);
+    }
+    int start = 1;
+    int end = 1;
+    int cnt =0;
+    while (start<=n&&end<=n)
+    {
+        if (arr[end]-arr[start-1]<m)
+        {
+            end++;
+        }
+        else{
+            if (arr[end]-arr[start-1]==m)
+            {
+                cnt++;
+            }
+           
+            start++;
+            
+        }
+    }
+    cout<<cnt<<"\n";
 }
